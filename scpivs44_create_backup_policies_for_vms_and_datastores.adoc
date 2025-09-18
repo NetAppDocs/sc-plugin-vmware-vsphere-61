@@ -1,0 +1,153 @@
+---
+sidebar: sidebar
+permalink: scpivs44_create_backup_policies_for_vms_and_datastores.html
+keywords:
+summary: 'You must create backup policies before you use the SnapCenter Plug-in for VMware vSphere to back up VMs and datastores.'
+---
+
+= Create backup policies for VMs and datastores
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+
+[.lead]
+You must create backup policies before you use the SnapCenter Plug-in for VMware vSphere to back up VMs and datastores.
+
+.Before you begin
+
+* You must have read the prerequisites.
+* You must have secondary storage relationships configured.
+** If you are replicating snapshots to a mirror or vault secondary storage, the relationships must be configured and the SnapCenter administrator must have assigned the storage VMs to you for both the source and destination volumes.
+** To successfully transfer snapshots to secondary storage for Version-FlexibleMirror relationships on a NFS or VMFS datastore, make sure that the SnapMirror policy type is Asynchronous Mirror and that the "all_source_snapshots" option is checked.
+//Updated for BURT 1378132 observation 21, March 2021 Madhulika
+** When the number of snapshots on the secondary storage (mirror-vault) reaches the maximum limit, the activity to register backup and apply retention in the backup operation fails with the following error: `This snapshot is currently used as a reference snapshot by one or more SnapMirror relationships. Deleting the snapshot can cause future SnapMirror operations to fail.`
++
+To correct this issue, configure the SnapMirror retention policy for secondary storage to avoid reaching the maximum limit of snapshots.
++
+For information about how administrators assign resources to users, refer to https://docs.netapp.com/us-en/snapcenter/get-started/rbac-snapcenter.html[SnapCenter information on using role-based access control^].
+
+* If you want VM-consistent backups, you must have VMware tools installed and running. VMware tools is needed to quiesce VMs. VM-consistent backups are not supported for vVol VMs.
+* SnapMirror active sync enables business services to continue operating even through a complete site failure, supporting applications to fail over transparently using a secondary copy. 
++
+[NOTE]
+SnapMirror active sync is supported only for VMFS Datastores. 
++
+To protect a VMFS datastore on a SnapMirror active sync deployment, as SnapCenter administrator you need to:
+
+**  Configure clusters and mediator as described in the technical report: https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/mediator-install-task.html[Configure the ONTAP Mediator and clusters for SnapMirror active sync].
+** Add the volume associated with the VMFS datastore to the consistency group and create a data protection relationship using _AutomatedFailOver_ or _AutomatedFailOverDuplex_ protection policy between two ONTAP storage systems. _AutomatedFailOverDuplex_ policy is supported from ONTAP 9.15.1 release onwards.
+
+[NOTE]
+In fan-out configuration, consistency group is not supported for tertiary site.
+// updated for VMDP-4673 - jani
+
+.About this task
+
+Most of the fields on these wizard pages are self-explanatory. The following information describes some of the fields for which you might require guidance.
+
+.Steps
+
+. In the left navigator pane of the SCV plug-in, select *Policies*.
+. On the *Policies* page, select *Create* to start the wizard.
+. On the *New Backup Policy* page enter the policy name and a description.
++
+* Linked mode
++
+In linked mode, each vCenter has a separate virtual appliance. Therefore, you can use duplicate names across vCenters. However, you must create the policy in the same vCenter as the resource group.
+
+* Unsupported characters
+//Updated for BURT 1378132 observation 22, March 2021 Madhulika
++
+Do not use the following special characters in VM, datastore, cluster, policy, backup, or resource group names: % & * $ # @ ! \ / : * ? " < > - | ; ' , and space.
+// SNAPCDOC-359 updates.
++
+An underscore character (_) is allowed.
+
+. Specify the frequency settings.
++
+The policy specifies the backup frequency only. The specific protection schedule for backing up is defined in the resource group. Therefore, two or more resource groups can share the same policy and backup frequency but have different backup schedules.
+
+. Select *Locking Period* checkbox to enable snapshot locking. You can select the primary and secondary snapshot locking periods as Days/Months/Years.
+[NOTE]
+Irrespective of the retention value set in the ONTAP SnapMirror policy, the secondary snapshot copy is not deleted before the specified secondary snapshot locking period.
+// updated for 5.0 also updated for 6.1 patch release
+. Specify the retention settings.
++
+[IMPORTANT]
+You should set the retention count to 2 backups or higher if you plan to enable SnapVault replication. If you set the retention count to 1 backup to keep, the retention operation can fail. This is because the first snapshot is the reference snapshot for the SnapVault relationship until the newer snapshot is replicated to the target.
+//Updated for BURT 1378132 observation 23, March 2021 Madhulika
++
+[NOTE]
+The maximum retention value is 1018 backups. Backups will fail if retention is set to a value higher than what the underlying ONTAP version supports. This is also true for spanning datastores.
+
+// https://jira.ngage.netapp.com/browse/SNAPCDOC-322 updates April 2025
+// Burt 1363510 May 2022
+. In the *Replication* fields, specify the type of replication to secondary storage,  as shown in the following table:
++
+|===
+|For this field… |Do this…
+
+|Update SnapMirror after backup
+
+a|Select this option to create mirror copies of backup sets on another volume that has a SnapMirror relationship to the primary backup volume.
+If a volume is configured with a mirror-vault relationship, you must select only the *Update SnapVault after backup* option if you want backups copied to the mirror-vault destinations.
+// BURT 1378132 observation 3, March 2021 Ronya
+[NOTE]
+This option is supported for datastores in FlexGroup volumes in SnapCenter Plug-in for VMware vSphere 4.5 and later.
+[NOTE]
+To protect VMFS datastore on SnapMirror active sync deployment, you need to complete the prerequisites mentioned in the _Before you begin_ section and enable *Update SnapMirror after backup*.
+
+|Update SnapVault after backup
+
+a|Select this option to perform disk-to-disk backup replication on another volume that has a SnapVault relationship to the primary backup volume.
+[IMPORTANT]
+If a volume is configured with a mirror-vault relationship, you must select only this option if you want backups copied to the mirror-vault destinations.
+
+[NOTE]
+This option is supported for datastores in FlexGroup volumes in SnapCenter Plug-in for VMware vSphere 4.5 and later.
+
+|Snapshot label
+a|Enter an optional, custom label to be added to SnapVault and SnapMirror snapshots created with this policy.
+The snapshot label helps to distinguish snapshots created with this policy from other snapshots on the secondary storage system.
+
+[NOTE]
+A maximum of 31 characters is allowed for snapshot labels.
+|===
+
+. Optional: In the *Advanced* fields, select the fields that are needed. The Advanced field details are listed in the following table.
++
+|===
+|For this field… |Do this…
+
+|VM consistency
+a|Check this box to quiesce the VMs and create a VMware snapshot each time the backup job runs.
+
+This option is not supported for vVols. For vVol VMs, only crash-consistent backups are performed.
+
+[IMPORTANT]
+You must have VMware tools running on the VM to perform VM consistent backups. If VMware tools is not running, a crash-consistent backup is performed instead.
+
+[NOTE]
+When you check the VM consistency box, backup operations might take longer and require more storage space. In this scenario, the VMs are first quiesced, then VMware performs a VM consistent snapshot, then SnapCenter performs its backup operation, and then VM operations are resumed.
+VM guest memory is not included in VM consistency snapshots.
+
+// Ranjith Kumar email 1April2021  Ronya
+
+|Include datastores with
+independent disks
+|Check this box to include in the backup any datastores with independent disks that contain temporary data.
+|Scripts
+a|Enter the fully qualified path of the prescript or postscript that you want the SnapCenter Plug-in for VMware vSphere to run before or after backup operations. For example, you can run a script to update SNMP traps, automate alerts, and send logs. The script path is validated at the time the script is executed.
+
+[NOTE]
+Prescripts and postscripts must be located on the virtual appliance VM.
+To enter multiple scripts, press *Enter* after each script path to list
+each script on a separate line. The character ";" is not allowed.
+|===
+
+. Select *Add.*
++
+You can verify that the policy is created and review the policy configuration by selecting the policy in the Policies page.

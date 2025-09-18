@@ -1,0 +1,42 @@
+---
+sidebar: sidebar
+permalink: scpivs44_generate_a_support_bundle_from_the_snapcenter_plug-in_for_vmware_vsphere_gui.html
+keywords:
+summary: 'You can generate a support bundle from the SnapCenter Plug-in for VMware vSphere GUI.'
+---
+
+= Generate a support bundle from the SnapCenter Plug-in for VMware vSphere GUI
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+//
+// This file was created with NDAC Version 2.0 (August 17, 2020)
+//
+// 2020-09-09 12:24:22.404267
+//
+
+[.lead]
+
+.Before you begin
+
+To log on to the SnapCenter Plug-in for VMware vSphere management GUI, you must know the IP address and the log in credentials. You must also note down the MFA token generated from the maintenance console.
+
+* The IP address was displayed when the SnapCenter Plug-in for VMware vSphere was deployed.
+* Use the log in credentials provided during the deployment of the SnapCenter Plug-in for VMware vSphere or as later modified.
+* Generate a 6-digit MFA token using the maintenance console System Configuration options.
+
+.Steps
+
+. Log in to the SnapCenter Plug-in for VMware vSphere GUI.
++
+Use the format `\https://<OVA-IP-address>:8080`.
+
+. Select the Settings icon in the top toolbar.
++
+image:scpivs44_image10.png["SnapCenter plug-in for VMware vSphere interface"]
+
+. On the *Settings* page, in the *Support* section, select *Generate Support* Bundle.
+. After the support bundle is generated, select the link that is provided to download the bundle to NetApp.

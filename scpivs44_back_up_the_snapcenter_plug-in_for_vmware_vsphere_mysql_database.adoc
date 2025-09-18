@@ -1,0 +1,46 @@
+---
+sidebar: sidebar
+permalink: scpivs44_back_up_the_snapcenter_plug-in_for_vmware_vsphere_mysql_database.html
+keywords:
+summary: 'SnapCenter Plug-in for VMware vSphere includes a MySQL database (also called an NSM database) that contains the metadata for all jobs performed by the plug-in. You should back up this repository regularly.'
+---
+
+= Back up the SnapCenter Plug-in for VMware vSphere MySQL database
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+//
+// This file was created with NDAC Version 2.0 (August 17, 2020)
+//
+// 2020-09-09 12:24:23.732323
+//
+
+[.lead]
+SnapCenter Plug-in for VMware vSphere includes a MySQL database (also called an NSM database) that contains the metadata for all jobs performed by the plug-in. You should back up this repository regularly.
+
+You should also back up the repository before performing migrations or upgrades.
+
+.Before you begin
+
+Do not start a job to back up the MySQL database when an on-demand backup job is already running.
+
+.Steps
+
+. From the VMware vSphere client, select the VM where the SnapCenter Plug-in for VMware vSphere is located.
+. In the *Summary* tab of the virtual appliance select *Launch Remote Console* *or Launch Web Console* to open a maintenance console window.
++
+image:scpivs44_image21.png["maintenance console window"]
+
+. From the Main Menu, enter option *1) Application Configuration.*
+. From the Application Configuration Menu, enter option *6) MySQL backup and restore.*
+. From the MySQL Backup and Restore Configuration Menu, enter option *1) Configure MySQL backup*.
+. At the prompt, enter the backup location for the repository, the number of backups to keep, and the time the backup should start.
++
+All inputs are saved when you enter them. When the backup retention number is reached, older backups are deleted when new backups are performed.
++
+[TIP]
+Repository backups are named "backup-<date>". Because the repository restore function looks for the "backup" prefix, you should not change it.
+// Burt 1433480 Nov 2021 Ronya

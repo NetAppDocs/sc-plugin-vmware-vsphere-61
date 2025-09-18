@@ -1,0 +1,26 @@
+---
+sidebar: sidebar
+permalink: scpivs44_create_backup_policies.html
+keywords:
+summary: 
+---
+
+= Create backup policies
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+//
+// This file was created with NDAC Version 2.0 (August 17, 2020)
+//
+// 2020-09-09 12:24:22.064213
+//
+[.lead]
+Follow the instructions given below to create backup policies
+
+. In the left navigator pane of the SCV plug-in, select *Policies*, and then select *New Policy*.
+. On the *New Backup Policy* page, enter the policy configuration information, and then select *Add*.
+
+//Updated for BURT 1378132 observation 3, March 2021 Madhulika

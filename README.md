@@ -1,1 +1,1 @@
-# new-repo-template
+# sc-plugin-vmware-vsphere-61
