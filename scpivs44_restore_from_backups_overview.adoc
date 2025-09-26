@@ -1,0 +1,41 @@
+---
+sidebar: sidebar
+permalink: scpivs44_restore_from_backups_overview.html
+keywords:
+summary: 'You can restore VMs, VMDKs, files, and folders from primary or secondary backups.'
+---
+
+= Restore overview
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+
+[.lead]
+You can restore VMs, VMDKs, files, and folders from primary or secondary backups.
+
+* VM restore destinations
++
+You can restore traditional VMs to the original host, or to an alternate host in the same vCenter Server, or to an alternate ESXi host managed by the same vCenter or any vCenter in linked mode.
++
+You can restore vVol VMs to the original host.
+
+* VMDK restore destinations
++
+You can restore VMDKs in traditional VMs to either the original or to an alternate datastore.
++
+You can restore VMDKs in vVol VMs to the original datastore.
+
+You can also restore individual files and folders in a guest file restore session, which attaches a backup copy of a virtual disk and then restores the selected files or folders.
+
+You cannot restore the following:
+
+* Datastores
++
+You cannot use the SnapCenter Plug-in for VMware vSphere to restore a datastore, only the individual VMs in the datastore.
+
+* Backups of removed VMs
++
+You cannot restore backups of storage VMs that have been removed. For example, if you add a storage VM using the management LIF and then create a backup, and then you remove that storage VM and add a cluster that contains that same storage VM, the restore operation for the backup will fail.

@@ -1,0 +1,97 @@
+---
+sidebar: sidebar
+permalink: scpivs44_minimum_vcenter_privileges_required.html
+keywords:
+summary: 'Before you begin deployment of SnapCenter Plug-in for VMware vSphere, you should make sure you have the minimum required vCenter privileges.'
+---
+
+= Minimum vCenter privileges required
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+//This file was created for Burt 1444097 Jan 2022
+
+[.lead]
+Before you begin deployment of SnapCenter Plug-in for VMware vSphere, you should make sure you have the minimum required vCenter privileges.
+
+== Required privileges for vCenter Admin role
+Datastore.AllocateSpace
+Datastore.Browse
+Datastore.Delete
+Datastore.FileManagement
+Datastore.Move
+Datastore.Rename
+Extension.Register
+Extension.Unregister
+Extension.Update
+Host.Config.AdvancedConfig
+Host.Config.Resources
+Host.Config.Settings
+Host.Config.Storage
+Host.Local.CreateVM
+Host.Local.DeleteVM
+Host.Local.ReconfigVM
+Network.Assign
+Resource.ApplyRecommendation
+Resource.AssignVMToPool
+Resource.ColdMigrate
+Resource.HotMigrate
+Resource.QueryVMotion
+System.Anonymous
+System.Read
+System.View
+Task.Create
+Task.Update
+VirtualMachine.Config.AddExistingDisk
+VirtualMachine.Config.AddNewDisk
+VirtualMachine.Config.AdvancedConfig
+VirtualMachine.Config.ReloadFromPath
+VirtualMachine.Config.RemoveDisk
+VirtualMachine.Config.Resource
+VirtualMachine.GuestOperations.Execute
+VirtualMachine.GuestOperations.Modify
+VirtualMachine.GuestOperations.Query
+VirtualMachine.Interact.PowerOff
+VirtualMachine.Interact.PowerOn
+VirtualMachine.Inventory.Create
+VirtualMachine.Inventory.CreateFromExisting
+VirtualMachine.Inventory.Delete
+VirtualMachine.Inventory.Move
+VirtualMachine.Inventory.Register
+VirtualMachine.Inventory.Unregister
+VirtualMachine.State.CreateSnapshot
+VirtualMachine.State.RemoveSnapshot
+VirtualMachine.State.RevertToSnapshot
+
+
+== Required privileges specific to SnapCenter Plug-in for VMware vCenter
+|===
+
+|*Privileges* | *Label*
+|netappSCV.Guest.RestoreFile
+|Guest File Restore
+|netappSCV.Recovery.MountUnMount
+|Mount/Unmount
+|netappSCV.Backup.DeleteBackupJob
+|Delete Resource Group/Backup
+|netappSCV.Configure.ConfigureStorageSystems.Delete
+|Remove Storage Systems
+|netappSCV.View
+|View
+|netappSCV.Recovery.RecoverVM
+|Recover VM
+|netappSCV.Configure.ConfigureStorageSystems.AddUpdate
+|Add/Modify Storage Systems
+|netappSCV.Backup.BackupNow
+|Backup Now
+|netappSCV.Guest.Configure
+|Guest Configuration
+|netappSCV.Configure.ConfigureSnapCenterServer
+|Configure SnapCenter Server
+|netappSCV.Backup.BackupScheduled
+|Create Resource Group
+
+|===

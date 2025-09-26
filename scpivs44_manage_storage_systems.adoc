@@ -1,0 +1,62 @@
+---
+sidebar: sidebar
+permalink: scpivs44_manage_storage_systems.html
+keywords:
+summary: 'Before you can back up or restore VMs or datastores using the VMware vSphere client, you must add the storage.'
+---
+
+= Manage storage systems
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+//
+// This file was created with NDAC Version 2.0 (August 17, 2020)
+//
+// 2020-09-09 12:24:27.016353
+//
+
+[.lead]
+Before you can back up or restore VMs or datastores using the VMware vSphere client, you must add the storage.
+
+== Modify storage VMs
+
+You can use the VMware vSphere client to modify the configurations of clusters and storage VMs that are registered in SnapCenter Plug-in for VMware vSphere and used for VM data protection operations.
+
+If you modify a storage VM that was automatically added as part of a cluster (sometimes called an implicit storage VM), then that storage VM changes to an explicit storage VM and can be separately deleted without changing the rest of the storage VMs in that cluster. On the Storage Systems page, the username is displayed as N/A when the authentication method is through the certificate; usernames are displayed only for explicit storage VMs in the cluster list and have the ExplicitSVM flag set to true. All storage VMs are always listed under the associated cluster.
+// BURT 1378132 observation 50, March 2021 Ronya
+
+[IMPORTANT]
+If you added storage VMs for application-based data protection operations using the SnapCenter GUI, you must use the same GUI to modify those storage VMs.
+
+.Steps
+
+. In the left navigator pane of the SCV plug-in, select *Storage Systems*.
+. On the *Storage Systems* page, select the storage VM to be modified and then select *Edit*.
+. On the *Edit Storage System* window, enter the new values, and then select *Update* to apply the changes.
+
+== Remove storage VMs
+
+You can use the VMware vSphere client to remove storage VMs from the inventory in vCenter.
+
+[NOTE]
+If you added storage VMs for application-based data protection operations using the SnapCenter GUI, you must use the same GUI to modify those storage VMs.
+
+.Before you begin
+
+You must unmount all datastores in the storage VM before you can remove the storage VM.
+
+.About this task
+
+If a resource group has backups that reside on a storage VM that you remove, then subsequent backups for that resource group fail.
+
+.Steps
+
+. In the left navigator pane of the SCV plug-in, select *Storage Systems*.
+. On the *Storage Systems* page, select the storage VM to be removed and then select *Delete*.
+. In the *Remove Storage System* confirmation box, check the box for *Delete storage system(s)* and then select *Yes* to confirm.
+*Note:* Only ESXi host 7.0U1 and later releases are supported.
++
+link:scpivs44_restart_the_vmware_vsphere_web_client_service.html[Restart the VMware vSphere client service].

@@ -1,0 +1,49 @@
+---
+sidebar: sidebar
+permalink: scpivs44_predefined_roles_packaged_with_snapcenter.html
+keywords:
+summary: 'To simplify working with vCenter Server RBAC, the SnapCenter Plug-in for VMware vSphere provides a set of predefined roles that enable users to perform SnapCenter tasks. There is also a read-only role that allows users to view SnapCenter information, but not perform any tasks.'
+---
+
+= Predefined roles packaged with SnapCenter Plug-in for VMware vSphere
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+//
+// This file was created with NDAC Version 2.0 (August 17, 2020)
+//
+// 2020-09-09 12:24:20.235275
+//
+
+[.lead]
+To simplify working with vCenter Server RBAC, the SnapCenter Plug-in for VMware vSphere provides a set of predefined roles that enable users to perform SnapCenter tasks. There is also a read-only role that allows users to view SnapCenter information, but not perform any tasks.
+
+The predefined roles have both the required SnapCenter-specific privileges and the native vCenter Server privileges to ensure that tasks are completed correctly. In addition, the roles are set up to have the necessary privileges across all supported versions of vCenter Server.
+
+As an administrator, you can assign these roles to the appropriate users.
+
+SnapCenter Plug-in for VMware vSphere returns these roles to their default values (initial set of privileges) each time you restart the vCenter web client service or modify your installation. If you upgrade the SnapCenter Plug-in for VMware vSphere, the predefined roles are automatically upgraded to work with that version of the plug-in.
+
+You can see the predefined roles in the vCenter GUI by selecting *Menu > Administration > Roles* as shown in the following table.
+
+|===
+|Role |Description
+
+|SCV Administrator
+|Provides all native vCenter Server and SnapCenter-specific privileges necessary to perform all SnapCenter Plug-in for VMware vSphere tasks. Beginning with SCV 6.1 release, a new privilege to create secondary protection is added to this role.
+// 6.1 update
+|SCV Backup
+|Provides all native vCenter Server and SnapCenter-specific privileges necessary to back up vSphere objects (virtual machines and datastores). The user also has access to the configure privilege. The user cannot restore backups. Beginning with SCV 6.1 release, a new privilege to create secondary protection is added to this role.
+// 6.1 updates
+|SCV Guest File Restore
+|Provides all native vCenter Server and SnapCenter-specific privileges necessary to restore guest files and folders. The user cannot restore VMs or VMDKs.
+|SCV Restore
+|Provides all native vCenter Server and SnapCenter-specific privileges necessary to restore vSphere objects that have been backed up using the SnapCenter Plug-in for VMware vSphere and to restore guest files and folders.
+The user also has access to the configure privilege.
+The user cannot back up vSphere objects.
+|SCV View
+|Provides read-only access to all the SnapCenter Plug-in for VMware vSphere backups, resource groups, and policies.
+|===

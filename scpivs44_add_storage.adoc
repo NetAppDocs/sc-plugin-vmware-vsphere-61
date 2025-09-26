@@ -1,0 +1,21 @@
+---
+sidebar: sidebar
+permalink: scpivs44_add_storage.html
+keywords:
+summary:
+---
+
+= Add storage
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+[.lead]
+Follow the steps in this section to add storage.
+// This file is used only for the Quick Start section
+
+
+. In the left navigator pane of the SCV plug-in, select *Storage Systems* and then select *Add* option.
+. On the Add Storage System dialog box, enter the basic SVM or cluster information, and select *Add*.

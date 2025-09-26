@@ -1,0 +1,81 @@
+---
+sidebar: sidebar
+permalink: scpivs44_access_the_maintenance_console.html
+keywords:
+summary: 'You can manage your application, system, and network configurations by using the maintenance console for SnapCenter Plug-in for VMware vSphere. You can change your administrator password, maintenance password, generate support bundles, and start remote diagnostics.'
+---
+
+= Access the maintenance console
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+[.lead]
+You can manage your application, system, and network configurations using the maintenance console for SnapCenter Plug-in for VMware vSphere. You can change your administrator password, maintenance password, generate support bundles, and start remote diagnostics.
+
+.Before you begin
+
+Before stopping and restarting SnapCenter Plug-in for VMware vSphere service, you should suspend all schedules.
+
+.About this task
+
+* In SnapCenter Plug-in for VMware vSphere 4.6P1, you must specify a password when you first install SnapCenter Plug-in for VMware vSphere. If you upgrade from release 4.6 or earlier to release 4.6P1 or later, the earlier default password is accepted.
+//Comment from CSAR May 2022
+
+* You must set a password for the “diag” user while enabling remote diagnostics.
++
+To obtain the root user permission to execute the command, use the sudo <command>.
+
+.Steps
+
+. From the VMware vSphere client, select the VM where SnapCenter Plug-in for VMware vSphere is located.
+. In the *Summary* tab of the virtual appliance select *Launch Remote Console* to open a maintenance console window.
++
+Log in using the default maintenance console username `maint` and password that you have set at the time of installation.
++
+image:scpivs44_image11.png["Maintenance console window"]
+
+. You can perform the following operations:
++
+* Option 1: Application Configuration
++
+Display a summary of SnapCenter Plug-in for VMware vSphere
+Start or stop SnapCenter Plug-in for VMware vSphere service
+Change login username or password for SnapCenter Plug-in for VMware vSphere
+Change MySQL password
+Backup and restore MySQL, configure and list MySQL backups
+// BURT 1378132 observation 54, March 2021 Ronya
+// Burt 1454993 May 2020 Ronya
++
+* Option 2: System Configuration
++
+Reboot virtual machine
+Shut down virtual machine
+Change 'maint' user password
+Change time zone
+Change NTP server 
+Enable SSH access
+Increase jail disk size (/jail)
+Upgrade 
+Install VMware Tools
+Generate MFA Token
+[NOTE]
+MFA is always enabled, you cannot disable MFA.
+// updated for 4.9 release
++
+* Option 3: Network Configuration
++
+Display or change IP address settings
+Display or change domain name search settings
+Display or change static routes
+Commit changes
+Ping a host
++
+* Option 4: Support and Diagnostics
++
+Generate support bundle
+Access diagnostic shell
+Enable remote diagnostic access
+Generate core dump bundle

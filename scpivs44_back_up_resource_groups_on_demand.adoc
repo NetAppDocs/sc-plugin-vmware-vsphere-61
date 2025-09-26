@@ -1,0 +1,49 @@
+---
+sidebar: sidebar
+permalink: scpivs44_back_up_resource_groups_on_demand.html
+keywords:
+summary: 'Backup operations are performed on all the resources defined in a resource group. If a resource group has a policy attached and a schedule configured, then backups occur automatically according to the schedule.'
+---
+
+= Back up resource groups on demand
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+//
+// This file was created with NDAC Version 2.0 (August 17, 2020)
+//
+// 2020-09-09 12:24:23.636097
+//
+
+[.lead]
+Backup operations are performed on all the resources defined in a resource group. If a resource group has a policy attached and a schedule configured, then backups occur automatically according to the schedule.
+
+[NOTE]
+ASA r2 backup creates consistency group snapshots and provisions primary consistency group if the given resource does not already have it.
+
+.Before you begin
+
+You must have created a resource group with a policy attached.
+
+[IMPORTANT]
+Do not start an on-demand backup job when a job to back up the SnapCenter Plug-in for VMware vSphere MySQL database is already running. Use the maintenance console to see the configured backup schedule for the MySQL database.
+// Burt 1378132, observation 81, March 2021 Ronya
+
+.About this task
+
+In earlier releases of Virtual Storage Console (VSC), you could perform an on-demand backup without having a backup job configured for a VM or datastore. However, for the SnapCenter Plug-in for VMware vSphere, VMs and datastores must be in a resource group before you can perform backups.
+
+.Steps
+
+. In the left navigator pane of the SCV plug-in, select *Resource Groups*, then select a resource group, and then select image:scpivs44_image38.png["Play icon"] *Run Now* to start the backup.
+. If the resource group has multiple policies configured, then in the *Backup Now* dialog box, select the policy you want to use for this backup operation.
+//Updated for BURT 1378132 observation 27, March 2021 Madhulika
+. Select *OK* to start the backup.
+. Optional: Monitor the operation progress by selecting *Recent Tasks* at the bottom of the window or on the dashboard *Job Monitor* for more details.
+//Updated for BURT 1378132 observation 28, March 2021 Madhulika
+.Result
+
+If the quiesce operation fails for any of the VMs in the backup, then the backup completes with a warning and is marked as not VM consistent even if the selected policy has VM consistency selected. In this case, it is possible that some of the VMs were successfully quiesced. In the job monitor, the failed VM details will show the quiesce as failed.
