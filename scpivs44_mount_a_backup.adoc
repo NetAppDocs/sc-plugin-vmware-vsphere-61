@@ -1,0 +1,52 @@
+---
+sidebar: sidebar
+permalink: scpivs44_mount_a_backup.html
+keywords:
+summary: 'You can mount a traditional datastore from a backup if you want to access files in the backup. You can either mount the backup to the same ESXi host where the backup was created or to an alternate ESXi host that has the same type of VM and host configurations. You can mount a datastore multiple times on a host.'
+---
+
+= Mount a backup
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+// This file was created with NDAC Version 2.0 (August 17, 2020)
+// 2020-09-09 12:24:23.855703
+
+[.lead]
+You can mount a traditional datastore from a backup if you want to access files in the backup. You can either mount the backup to the same ESXi host where the backup was created or to an alternate ESXi host that has the same type of VM and host configurations. You can mount a datastore multiple times on a host.
+
+You cannot mount a vVol datastore.
+
+.Before you begin
+
+* Ensure alternate ESXi host can connect to the storage
++
+If you want to mount to an alternate ESXi host, you must ensure that the alternate ESXi host can connect to the storage and has the following:
+
+** Same UID and GID as that of the original host
+** Same virtual appliance for SnapCenter Plug-in for VMware vSphere version as that of original host
+
+* When using the iSCSI protocol, ensure that the initiators for the storage system are mapped to the ESXi host. When using the NVMe protocol, add controllers to map the required subsystem to the ESXi host.
+
+* Clean up stale LUN/Namespace
++
+Because the ESXi host can only discover one unique LUN/Namespace per datastore, the operation will fail if it finds more than one. This can occur if you start a mount operation before a previous mount operation has finished, or if you manually clone LUN/Namespace, or if clones are not deleted from storage during an unmount operation. To avoid discovery of multiple clones, you should clean up all stale LUN/Namespace on the storage.
+
+.About this task
+
+A mount operation might fail if the storage tier of the FabricPool where the datastore is located is unavailable.
+
+.Steps
+
+. In the VMware vSphere client shortcuts page select *Storage*.
+. Right-click a datastore and select *SnapCenter Plug-in for VMware vSphere* > *Mount Backup*.
+. On the *Mount Datastore* page, select a backup and a backup location (primary or secondary), and then select *Finish*.
+//Updated for BURT 1378132 observation 29, March 2021 Madhulika
+. Optional: To verify that the datastore is mounted, perform the following:
+.. Select *Menu* in the toolbar, and then select *Storage* from the drop-down list.
+.. The left navigator pane displays the datastore you mounted at the top of the list.
++
+To prevent new snapshots from being created when you clone the volume, turn off the ONTAP schedule for the SnapVault volume. Previously existing snapshots are not deleted.

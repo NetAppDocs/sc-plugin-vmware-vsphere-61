@@ -1,0 +1,166 @@
+---
+sidebar: sidebar
+permalink: scpivs44_minimum_ontap_privileges_required.html
+keywords:
+summary: 'The minimum ONTAP privileges that are required vary according to the SnapCenter plug-ins you are using for data protection.'
+---
+
+= ONTAP privileges required
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+[.lead]
+The minimum ONTAP privileges that are required vary according to the SnapCenter plug-ins you are using for data protection.
+
+[NOTE]
+Beginning with SnapCenter Plug-in for VMware (SCV) 5.0, you need to add applications of type HTTP and ONTAPI as user login methods for any ONTAP users with customized role-based access to the SCV. Without access to these applications, backups will fail. You need to restart the SCV service to recognize changes to ONTAP user login methods.
+
+//6.1 update
+== Minimum ONTAP privileges required
+
+All SnapCenter plug-ins require the following minimum privileges.
+
+|===
+|All-access commands: Minimum ONTAP privileges.
+|event generate-autosupport-log
+|job history show
+job show
+job stop
+|lun
+lun create
+lun delete
+lun igroup add
+lun igroup create
+lun igroup delete
+lun igroup rename
+lun igroup show
+lun mapping add-reporting-nodes
+lun mapping create
+lun mapping delete
+lun mapping remove-reporting-nodes
+lun mapping show
+lun modify
+lun move-in-volume
+lun offline
+lun online
+lun persistent-reservation clear
+lun resize
+lun serial
+lun show
+|snapmirror list-destinations
+snapmirror policy add-rule
+snapmirror policy modify-rule
+snapmirror policy remove-rule
+snapmirror policy show
+snapmirror restore
+snapmirror show
+snapmirror show-history
+snapmirror update
+snapmirror update-ls-set
+|Version
+|volume clone create
+volume clone show
+volume clone split start
+volume clone split status
+volume clone split stop
+volume create
+volume delete
+volume destroy
+volume file clone create
+volume file show-disk-usage
+volume offline
+volume online
+volume managed-feature
+volume modify
+volume qtree create
+volume qtree delete
+volume qtree modify
+volume qtree show
+volume restrict
+volume show
+volume snapshot create
+volume snapshot delete
+volume snapshot modify
+volume snapshot modify-snaplock-expiry-time
+volume snapshot rename
+volume snapshot restore
+volume snapshot restore-file
+volume snapshot show
+volume snapshot show-delta
+volume unmount
+|vserver cifs
+vserver cifs share create
+vserver cifs share delete
+vserver cifs shadowcopy show
+vserver cifs share show
+vserver cifs show
+vserver export-policy
+vserver export-policy create
+vserver export-policy delete
+vserver export-policy rule create
+vserver export-policy rule show
+vserver export-policy show
+vserver iscsi
+vserver iscsi connection show
+vserver nvme subsystem controller
+vserver nvme subsystem controller show
+vserver nvme subsystem create
+vserver nvme subsystem delete
+vserver nvme subsystem host
+vserver nvme subsystem host show
+vserver nvme subsystem host add
+vserver nvme subsystem host remove
+vserver nvme subsystem map
+vserver nvme subsystem map show
+vserver nvme subsystem map add
+vserver nvme subsystem map remove
+vserver nvme subsystem modify
+vserver nvme subsystem show
+vserver nvme namespace create
+vserver nvme namespace delete
+vserver nvme namespace modify
+vserver nvme namespace show
+network interface
+network interface failover-groups
+|===
+
+|===
+|Read-only Commands: Minimum ONTAP Privileges
+
+|
+cluster identity show
+network interface show
+vserver
+vserver peer
+vserver show
+|===
+
+|===
+|All-access commands: Minimum ONTAP privileges
+
+|
+consistency-group
+storage-unit show
+|===
+// 6.1 update
+
+You can ignore the _cluster identity show_ cluster level command when creating a role to associate with the data vServer.
+// updated for https://github.com/NetAppDocs/sc-plugin-vmware-vsphere/issues/75 - Deena
+[NOTE]
+You can ignore the warning messages about the unsupported vServer commands.
+
+== Additional ONTAP information
+
+// https://jira.ngage.netapp.com/browse/SNAPCDOC-322 April 2025
+* You need ONTAP 9.12.1 or later versions to use SnapMirror active sync feature.
+* To use TamperProof Snapshot (TPS) feature:
+** You need ONTAP 9.13.1 and later versions for SAN
+** You need ONTAP 9.12.1 and later versions for NFS
+* For NVMe over TCP and NVMe over FC protocol you need ONTAP 9.10.1 and later.
+
+[NOTE]
+Beginning with ONTAP version 9.11.1, the communication to ONTAP cluster is through REST APIs. The ONTAP user should have http application enabled. However, if there are issues found with ONTAP REST APIs, the configuration key 'FORCE_ZAPI' helps the switchover to traditional ZAPI workflow. You may need to add or update this key using the config APIS and set it to true. Refer to KB article, https://kb.netapp.com/mgmt/SnapCenter/How_to_use_RestAPI_to_edit_configuration_parameters_in_SCV[How to use RestAPI to edit configuration parameters in SCV] for more information. 
+

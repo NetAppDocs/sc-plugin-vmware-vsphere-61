@@ -1,0 +1,36 @@
+---
+sidebar: sidebar
+permalink: scv48_add_certificates_to_certificate_store.html
+keywords: 
+summary: 'Add the Root and Intermediate certificates of Certificate Authority to the VMware vCenter in order to trust the certificate and the artifacts that are signed with it.'
+---
+
+= Add certificates to the VMware Certificate Store
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+//
+// This file was created for 4.8 release
+
+[.lead]
+Before installing the Open Virtual Appliance (OVA), add the certificate to the vCenter. The .tar file contains the OVA and Entrust Root and Intermediate certificates, the certificates can be found within the certificates folder. The OVA deployment is supported in VMware vCenter 7u1 and above.
+
+In VMware vCenter 7.0.3 versions and higher, the OVA signed by the Entrust certificate is no longer trusted. You need to perform the following procedure to resolve the issue.
+
+.Steps
+. Log in with the vSphere Client to the vCenter Server.
+. Navigate to *Administration > Certificates > Certificate Management*.
+. Next to *Trusted Root Store*, select *Add*
+. Browse and select the location of the Entrust Root and Intermediate certificates.
+The certificate is added in a panel under *Trusted Root Certificates*.
+Once the certificates are installed, OVA can be verified and deployed.
+
+[NOTE]
+If the downloaded OVA is not tampered, then the *Publisher* column displays 
+*Trusted certificate*.
+
+
+

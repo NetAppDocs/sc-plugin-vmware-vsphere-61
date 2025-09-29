@@ -1,0 +1,40 @@
+---
+sidebar: sidebar
+permalink: scpivs44_detach_a_virtual_disk.html
+keywords:
+summary: 'After you have attached a virtual disk to restore individual files, you can detach the virtual disk from the parent VM.'
+---
+
+= Detach a virtual disk
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+
+[.lead]
+After you have attached a virtual disk to restore individual files, you can detach the virtual disk from the parent VM.
+
+.Steps
+
+. In the VMware vSphere client GUI, select *Menu* in the toolbar, and then select *VMs and Templates* from the drop-down list.
+. In the left navigator pane, select a VM.
+//Updated for BURT 1378132 observation 37, March 2021 Madhulika
+. In the left navigation pane, right-click the VM, then select *SnapCenter Plug-in for VMware vSphere* in the drop-down list, and then select *Detach virtual disk* in the secondary drop-down list.
+. On the *Detach Virtual Disk* screen, select one or more disks you want to detach, then select the *Detach the selected disk(s)* checkbox, and select *DETACH*.
+//Updated for BURT 1378132 observation 38, March 2021 Madhulika
++
+[IMPORTANT]
+Make sure that you select the correct virtual disk. Selecting the wrong disk might affect production work.
+
+. Optional: Monitor the operation progress in the *Recent Tasks* section.
++
+Refresh the screen to display updated information.
+
+. Verify that the virtual disk is detached by performing the following:
+.. Select *Menu* in the toolbar, and then select *VMs and Templates* from the drop-down list.
+.. In the left navigator pane, right-click a VM, then select *Edit settings* in the drop-down list.
+.. In the *Edit Settings* window, expand the list for each hard disk to see the list of disk files.
++
+The *Edit Settings* page lists the disks on the VM. You can expand the details for each hard disk to see the list of attached virtual disks.
