@@ -4,7 +4,6 @@ permalink: scpivs44_upgrade.html
 keywords:
 summary: 'If you are using the SnapCenter Plug-in for VMware vSphere virtual appliance, you can upgrade to a newer release.'
 ---
-
 = Upgrade from an earlier release of SnapCenter Plug-in for VMware vSphere
 :hardbreaks:
 :nofooter:
@@ -17,7 +16,10 @@ summary: 'If you are using the SnapCenter Plug-in for VMware vSphere virtual app
 Upgrade to SCV 6.1 is supported only on VMware vCenter server 7 update 1 and later versions, for VMware vCenter server prior to version 7 update 1, you should continue to use SCV 4.7. The upgrade is disruptive on unsupported versions of VMware vCenter server.
 
 If you are using the SnapCenter Plug-in for VMware vSphere virtual appliance, you can upgrade to a newer release.
+
 The upgrade process unregisters the existing plug-in and deploys a plug-in that is compatible only with vSphere 7.0U1 and later versions.
+
+CAUTION: Before performing your upgrade, you must verify that the system meets the required configuration requirements. Refer to link:scpivs44_deployment_planning_and_requirements.html[SnapCenter Plug-in for VMware vSphere Deployment Planning and Requirements] for details.
 
 == Upgrade paths
 
@@ -41,7 +43,7 @@ TIP: Backup the SnapCenter Plug-in for VMware vSphere OVA before starting an upg
 
 NOTE: Switching your network configuration from static to DHCP is not supported.  
 
-For the latest information about supported versions, refer to https://imt.netapp.com/matrix/imt.jsp?components=134348;&solution=1517&isHWU&src=IMT[NetApp Interoperability Matrix Tool^] (IMT).
+For the latest information about supported versions, refer to link:https://imt.netapp.com/matrix/imt.jsp?components=134348;&solution=1517&isHWU&src=IMT[NetApp Interoperability Matrix Tool (IMT)^].
 
 
 .Steps
@@ -53,7 +55,8 @@ The IP address is displayed when you deploy the SnapCenter Plug-in for VMware vS
 
 . Download the upgrade `.iso` file.
 
-.. Log in to the NetApp Support Site (https://mysupport.netapp.com/products/index.html).
+.. Log in to the link:https://mysupport.netapp.com/products/index.html[NetApp Support site^].
+
 .. From the list of products, select *SnapCenter Plug-in for VMware vSphere*, then select the *DOWNLOAD LATEST RELEASE* button.
 .. Download the SnapCenter Plug-in for VMware vSphere upgrade `.iso` file to any location.
 
