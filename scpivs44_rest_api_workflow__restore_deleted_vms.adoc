@@ -25,11 +25,6 @@ For each REST API, add `\https://<server>:<port>` at the front of the REST API t
 |===
 |Step |REST API |Comments
 
-//1
-// |`POST /4.1/auth/login`
-// |Pass the vCenter credentials to get the token. 
-//Send the token in the `Token` header for all subsequent calls. If the username contains a domain, separate with \\.
-
 |1
 |Go to `\http://<vCenter-IP>/mob` 
 |Find the datastore *moref* from the VMware Managed Objects URL.
@@ -64,7 +59,7 @@ Note the *availableEsxHostsList* information.
 |`Restore a VM from a backup` restores the specified backup.
 Pass the *UUID* from Step 3.
 Pass the *backupId* from Step 2.
-Pass the information from Steps 4 and 5 in the *esxHost* and *restoreLocations* attributes.
+In the *restoreLocations* attribute, pass the information from *snapshotLocationsList* in Step 4; in the *esxHost* attribute, pass the information from *availableEsxHostsList* in Step 5.
 
 *Note:* You cannot restore a VM that is a template.
 |===
